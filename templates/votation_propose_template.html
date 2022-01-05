@@ -1,0 +1,161 @@
+{% extends "base_template.html" %} {% block body %}
+
+<form action="votation_propose" method="post" id="votationPurpose">
+    <div class="form-group">
+        <label for="votation_description">{{_("Description")}}:</label>
+        <input class="form-control" type="text" id="votation_description" name="votation_description">
+    </div>
+    <div class="form-group">
+        <label for="description_url">URL:</label>
+        <input class="form-control" type="text" id="description_url" name="description_url">
+        <small class="form-text text-muted">{{_("Address of a page describing the election. As an example, a Facebook post or a blog post")}}.</small>
+    </div>
+    <div class="form-group">
+        <label for="votation_type">{{_("Election type")}}:</label>
+        <select class="form-control"  id="votation_type" name="votation_type">
+            <option value="cluster_mj" selected>{{_("Cluster Majority Judgement")}}</option>
+            <option value="maj_jud" selected>{{_("Majority judgment")}}</option>
+            <option value="simple_maj">{{_("Simple majority")}}</option>
+            <option value="list_rand">{{_("List randomizer")}}</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm">
+            <label for="begin_date">{{_("Begin date")}}</label>
+            <input class="form-control" type="date" id="begin_date" name="begin_date">
+        </div>
+        <div class="form-group col-sm">
+            <label for="begin_time">{{_("Begin time")}} </label>
+            <input class="form-control" type="time" id="begin_time" name="begin_time">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm">
+            <label for="end_date">{{_("End date")}}</label>
+            <input class="form-control" type="date" id="end_date" name="end_date">
+        </div>
+        <div class="form-group col-sm">
+            <label for="end_time">{{_("End time")}} </label>
+            <input class="form-control" type="time" id="end_time" name="end_time">
+        </div>
+    </div>
+
+    <div class="form-group" id="votation_options_group">
+        <label for="votation_options">{{_("Option or candidate list")}}:</label>
+        <textarea class="form-control text-uppercase" type="text" id="votation_options" name="votation_options" rows="5"></textarea>
+        <small class="form-text text-muted">{{_("One option each row")}}</small>
+    </div>
+
+    <div class="form-group" id="cluster_mj">
+        <label for="num_possibili_vincitori">Numero di possibili vincitori:</label>
+        <td><input type='number' id="num_possibili_vincitori" name="num_possibili_vincitori" value=1></td>
+    </div>
+    
+    
+    <div class="form-group" id="votation_juds_group">
+        <label for="votation_juds">{{_("Judgement list")}}:</label>
+        <textarea class="form-control text-uppercase" 
+                  type="text" 
+                  id="votation_juds" 
+                  name="votation_juds" 
+                  rows="7">
+{{_("Very good")}}
+{{_("Good")}}
+{{_("Acceptable")}}
+{{_("Not enough")}}
+{{_("Poor")}}
+{{_("No opinion")}}
+        </textarea>
+        <small class="form-text text-muted">{{_("One judgement each row, best on top")}}</small>
+    </div>
+    
+    <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" value="1" id="list_voters" name="list_voters" />
+        <label class="form-check-label" for="list_voters">{{_("Add voters")}}</label>
+    </div>
+
+    <input type="hidden" name="utc_begin_date" id="utc_begin_date" />
+    <input type="hidden" name="utc_end_date" id="utc_end_date" />
+
+    <button type="submit" class="btn btn-primary">{{_("Save")}}</button>
+</form>
+<div class="font-weight-light mt-4 mb-2">UTC time: {{utcnow}}</div>
+
+<script>
+$(function () {
+    // show and hide of options
+    $("#votation_type").change(
+        function() {
+            if ($("#votation_type").val() == "maj_jud") {
+                $("#votation_options_group").show();
+                $("#votation_juds_group").show();
+                $("#cluster_mj").hide();
+                $("#votation_juds").val('{{_("Very good")}}\n{{_("Good")}}\n{{_("Acceptable")}}\n{{_("Not enough")}}\n{{_("Poor")}}\n{{_("No opinion")}}')
+            }
+            if ($("#votation_type").val() == "simple_maj") {
+                $("#votation_options_group").show();
+                $("#votation_juds_group").hide();
+                $("#cluster_mj").hide()
+            }
+            if ($("#votation_type").val() == "list_rand") {
+                $("#votation_options_group").show();
+                $("#votation_juds_group").hide();
+                $("#votation_juds").val('{{_("RED")}}\n{{_("BLUE")}}\n{{_("GREEN")}}\n');
+                $("#cluster_mj").hide()
+            }
+            if ($("#votation_type").val() == "cluster_mj") {
+                $("#votation_options_group").show();
+                $("#votation_juds_group").show();
+                $("#votation_juds").val('{{_("Very good")}}\n{{_("Good")}}\n{{_("Acceptable")}}\n{{_("Not enough")}}\n{{_("Poor")}}\n{{_("No opinion")}}');
+                $("#cluster_mj").show()
+            }
+        }
+    );
+
+    // set date today
+    var d = new Date();
+    $("#begin_date").val(formatDate(d));
+    $("#begin_time").val(formatTime(d));
+    
+    // set date next day
+    var ms = new Date().getTime() + (86400000);
+    d = new Date(ms);
+    $("#end_date").val(formatDate(d));
+    $("#end_time").val(formatTime(d));
+
+    $("#votationPurpose").submit(function( event ){
+        var l = $("#votation_description").val().trim();
+        if(!l) {
+            alert("Add a description of this votation");
+            return false;
+        }
+        l = $("#votation_options").val().trim();
+        if(!l) {
+            alert("Please, add options");
+            return false;
+        }
+
+        l = $("#votation_juds").val().trim();
+        if(!l) {
+            alert("Please, add Judgements");
+            return false;
+        }
+
+        // Convert time in UTC
+        var local_date = new Date($("#begin_date").val() + " " + $("#begin_time").val());
+        var utc_date = local_to_utc(local_date);
+        $("#utc_begin_date").val(formatDateTime(utc_date));
+
+        local_date = new Date($("#end_date").val() + " " + $("#end_time").val());
+        utc_date = local_to_utc(local_date);
+        $("#utc_end_date").val(formatDateTime(utc_date));
+
+        return true;
+    });
+    
+});
+</script>
+
+{% endblock %}

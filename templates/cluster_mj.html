@@ -1,0 +1,12 @@
+{% extends "votation_detail_template.html" %} {% block results %}
+        <h3>{{_("Election Result")}}</h3>
+        {% if count_voters == count_votes %}
+            <div class="alert alert-success">{{_("The number of votes and the number of voters match")}}.</div>
+        {% else %}
+            <div class="alert alert-danger">{{_("The number of votes and the number of voters do not match")}}.</div>
+        {% endif %}
+    <p><span class="font-weight-bold">{{ "Numero vincitori:" }}</span> {{ numero_vincitori }}</p>
+    <p><span class="font-weight-bold">{{ "Winners:" }} </span> {{ result }}</p>
+
+        {% endblock %}
+

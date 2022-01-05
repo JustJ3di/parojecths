@@ -1,0 +1,21 @@
+{% extends "base_template.html" %}
+{% block body %}
+
+
+<div class="my-4 w-100 text-center"><a href="/votation_propose" class="btn btn-warning btn-lg w-auto ">
+        <span class="border border-white m-2 p-2 rounded-circle"><i class="fa fa-pencil"></i></span>
+        <span >{{_("Create a New Election")}}</span>
+</a></div>
+<div class="my-4 w-100 text-center"><a href="/votation_list" class="btn btn-warning btn-lg w-auto ">
+    <span class="border border-white m-2 p-2 rounded-circle"><i class="fa fa-file-text-o"></i></span>
+        <span>{{_("Election List")}}</span>   
+</a></div>
+
+<div class="my-4 w-100 text-center"><a href="https://docs.google.com/presentation/d/1pev8s--Zw95yR0o0zsS0MioSjDo52UKKbzdMczq0QF4/edit?usp=sharing " class="btn btn-warning btn-lg w-auto">
+        <span class="border border-white m-2 p-2 rounded-circle"><i class="fa fa-question-circle-o"></i></span>
+            <span>{{_("How it works")}}</span>   
+    </a></div>
+    
+
+{% endblock %}
+    

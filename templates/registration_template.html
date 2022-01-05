@@ -1,0 +1,36 @@
+{% extends "base_template.html" %} 
+{% block body %} 
+{% if message  %}
+{% if message[0] == 0 %}
+    <p class="alert alert-danger">{{message[1]}}</p>
+{% endif %}
+{% if message[0] == 1 %}
+    <p class="alert alert-success">{{message[1]}}</p>
+{% endif %}
+{% endif %}
+
+<div style= "text-align:center;">
+    <form action="registration" method="post" id="registration">
+        <table style ="display:inline-table;">
+            <tr>
+                <td>Username</td>
+                <td><input type="text" name="user_name" value=""></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type = "password" name="pass_word" value=""></td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td><input type = "email" name="email" value=""></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+            <button class="btn btn-warning" type="submit">Registrati</button>
+    </br>
+    </br>
+    </form>
+    <div class="container">
+</div>
+{% endblock %}
