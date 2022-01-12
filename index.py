@@ -67,7 +67,7 @@ import votation_bo
 import cluster_mj
 
 import user 
-from model import Votation
+from model import Votation, Option
 if config.AUTH == 'ldap':
     import auth_ldap as auth
 if config.AUTH == 'google':
@@ -349,14 +349,17 @@ def votetion_cluster_maj_jud(v, options_array,voters_array):
     votation_id = v.votation_id
     matrix = cluster_mj.load_all_votes_by_votation_id(votation_id)
     numero_vincitori = v.possibili_vincitori
+    result = []
+    result_word =[]
     if v.votation_status == votation_dao.STATUS_ENDED:
         #counting = vote_maj_jud.votation_counting(v)
         #num_elettori = db.session.query(func.count(distinct((Vote.vote_key)))).filter(Vote.votation_id == votation_id).scalar()
         condition = 'ko'
-        result = []
+        #result = []
         numero_opzioni = len(option_dao.load_options_by_votation(votation_id))
         numero_giudizi = len(judgement_dao.load_judgement_by_votation(votation_id))
         numero_elettori = len(judgement_dao.load_voters_by_votation(votation_id))
+
         k = numero_vincitori
         while condition == 'ko' :
         #Esegue la votazione finchè non trova il numero di vincitori distinti = numero di vincitori, se necessario quindi riclusterizza con un numero minore di cluster pari al numero di seggi vacanti per trovare tutti i vincitori
@@ -378,12 +381,29 @@ def votetion_cluster_maj_jud(v, options_array,voters_array):
             else:
                 k = option_remaining
                 condition = 'ko'
+        k = v.possibili_vincitori
+        tot_array_cluster = []
+        for i in cluster_mj.cluster(centroid = centroid,number_of_cluster= number_cluster,vote_list= matrix):
+            totals_array =[]
+            for n in cluster_mj._cluster_counting_vote(i,numero_opzioni,numero_giudizi):
+                totals_array.append(list(n))
+            tot_array_cluster.append(list(totals_array))
+        print(tot_array_cluster)
+
+
+        for index in result:
+            result_word.append(db.session.query(Option.option_name).filter(Option.votation_id == votation_id).order_by(Option.option_id).all()[index][0])        
         
-        #cluster = cluster_mj.cluster(juds_array, possibili_vincitori)
-        #for single_cluster in cluster:
-        #    win_cluster = cluster_mj.winners(single_cluster, juds_array, options_array, num_elettori, possibili_vincitori)
-        #    tot_win = cluster_mj.total_winners(win_cluster, possibili_vincitori, options_array)
+        counting = vote_maj_jud.votation_counting(v)
+        option_name = db.session.query(Option.option_name).filter(Option.votation_id == votation_id).order_by(Option.option_id).all()
         
+        juds_array = judgement_dao.load_judgement_by_votation(v.votation_id)
+        num_cluster = len(cluster_mj.cluster(centroid = centroid,number_of_cluster= number_cluster,vote_list= matrix))
+        print(num_cluster)
+        print(tot_array_cluster)
+        print(len(tot_array_cluster[0]))
+        print(counting)
+
     return render_template('cluster_mj.html', pagetitle=_("Election details"), \
          v=v, \
          states=votation_dao.states, options_array=options_array,matrix=matrix, \
@@ -391,7 +411,10 @@ def votetion_cluster_maj_jud(v, options_array,voters_array):
          count_votes=vote_dao.count_votes(v.votation_id), \
          votation_timing=votation_dao.votation_timing(v), \
          type_description=votation_dao.TYPE_DESCRIPTION, \
-         voters_array=voters_array, numero_vincitori=numero_vincitori, result=result)
+         voters_array=voters_array, numero_vincitori=numero_vincitori, \
+         result=result_word,juds_array = juds_array, counting = counting, \
+        totals_array = tot_array_cluster,num_cluster = range(num_cluster), \
+            n_cluster = num_cluster, option_name=option_name, zip=zip) #elegante
 
 def votation_detail_maj_jud(v, options_array, voters_array):
     juds_array = judgement_dao.load_judgement_by_votation(v.votation_id)
