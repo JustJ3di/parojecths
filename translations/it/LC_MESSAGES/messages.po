@@ -1,0 +1,650 @@
+# Italian translations for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-03-31 19:46+0200\n"
+"PO-Revision-Date: 2019-04-24 17:01+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: auth_google.py:24 auth_google.py:38 auth_ldap.py:37 auth_test.py:23
+msgid "Login failed"
+msgstr ""
+
+#: auth_google.py:48 auth_ldap.py:44 auth_superauth.py:42 auth_test.py:29
+msgid "Login successful"
+msgstr "Login eseguito"
+
+#: auth_ldap.py:47 auth_test.py:31
+msgid "Wrong user or password"
+msgstr ""
+
+#: auth_superauth.py:46
+msgid "Login not successful, (no username)"
+msgstr ""
+
+#: index.py:70 index.py:353 templates/login_google_template.html:5
+#: templates/login_google_template.html:12
+#: templates/login_superauth_template.html:5
+#: templates/login_superauth_template.html:9 templates/login_template.html:5
+msgid "Main menu"
+msgstr "Menu principale"
+
+#: index.py:74 index.py:78
+msgid "Credits"
+msgstr ""
+
+#: index.py:94 templates/base_template.html:55
+msgid "Login"
+msgstr "Entra"
+
+#: index.py:107
+msgid "Login result"
+msgstr ""
+
+#: index.py:122
+msgid "Please, insert data"
+msgstr "Inserire dati"
+
+#: index.py:139
+msgid "New election"
+msgstr "Crea una elezione"
+
+#: index.py:147 templates/base_template.html:47
+msgid "Election list"
+msgstr "Lista delle elezioni"
+
+#: index.py:217 index.py:231
+msgid "Election details"
+msgstr "Dettagli dell'elezione"
+
+#: index.py:248
+msgid "Election closed"
+msgstr "Elezione chiusa"
+
+#: index.py:249
+msgid "Election closed, please, check results"
+msgstr "Elezione chiusa, controlla i risultati"
+
+#: index.py:257 index.py:261
+msgid "Delete"
+msgstr "Cancellazione"
+
+#: index.py:258
+msgid "Election deleted"
+msgstr "Elezione cancellata"
+
+#: index.py:274
+msgid "Voter"
+msgstr "Avente diritto"
+
+#: index.py:275
+msgid "{} voters being added"
+msgstr "{} aventi diritto sono stati aggiunti"
+
+#: index.py:278 templates/votation_detail_template.html:30
+msgid "Voters"
+msgstr "Votanti"
+
+#: index.py:279
+msgid "Sorry, only the owner of this election can add voters"
+msgstr "Solo il promotore dell'elezione può aggiungere aventi diritto"
+
+#: index.py:306 templates/majority_jud/vote_template.html:58
+#: templates/votation_list_template.html:25
+msgid "Vote"
+msgstr "Vota"
+
+#: index.py:316 index.py:331
+msgid "Your vote has been registered"
+msgstr "Voto registrato"
+
+#: index.py:318
+msgid "Error. Vote NOT registered. Wrong key?"
+msgstr "Errore. Voto NON registrato. Chiave sbagliata?"
+
+#: index.py:319 index.py:334
+msgid "Vote registering"
+msgstr "Votazione"
+
+#: index.py:333
+msgid "Error. Vote NOT registered. Wrong Password?"
+msgstr ""
+
+#: votation_dao.py:29
+msgid "Draw"
+msgstr "Sorteggio"
+
+#: votation_dao.py:30
+msgid "Secure Majority Judgment"
+msgstr "Majority Judgment Sicuro"
+
+#: votation_dao.py:32
+msgid "Simple Majority"
+msgstr "Maggioranza semplice"
+
+#: votation_dao.py:34
+msgid "Created"
+msgstr "Creata"
+
+#: votation_dao.py:35
+msgid "Voting"
+msgstr "Voto"
+
+#: votation_dao.py:36
+msgid "Working, please wait..."
+msgstr "Elaborazione, attendere"
+
+#: votation_dao.py:37
+msgid "Ended"
+msgstr "Terminata"
+
+#: votation_dao.py:38
+msgid "Failed"
+msgstr "Fallita"
+
+#: templates/base_template.html:32 templates/login_google_template.html:4
+#: templates/login_superauth_template.html:4 templates/login_template.html:4
+msgid "Welcome"
+msgstr "Benvenuto"
+
+#: templates/base_template.html:41
+msgid "Main Menu"
+msgstr "Menu principale"
+
+#: templates/base_template.html:44
+msgid "Create a New election"
+msgstr "Crea una nuova elezione"
+
+#: templates/base_template.html:51
+msgid "Logoff"
+msgstr "Esci"
+
+#: templates/confirmation_template.html:3
+msgid "Confirm"
+msgstr "Conferma"
+
+#: templates/confirmation_template.html:7
+msgid "Delete election"
+msgstr "Cancella elezione"
+
+#: templates/confirmation_template.html:8
+msgid "Don't delete"
+msgstr "Non cancellare"
+
+#: templates/index_template.html:7
+msgid "Create a New Election"
+msgstr "Crea una Nuova Elezione"
+
+#: templates/index_template.html:11
+msgid "Election List"
+msgstr "Lista delle elezioni"
+
+#: templates/index_template.html:16
+msgid "How it works"
+msgstr "Come funziona"
+
+#: templates/login_google_template.html:5
+#: templates/login_superauth_template.html:5 templates/login_template.html:5
+msgid "Go to"
+msgstr "Vai a"
+
+#: templates/login_google_template.html:12
+#: templates/login_superauth_template.html:9
+msgid "After logging in by this button, please go to"
+msgstr "Dopo il login, poi vai a"
+
+#: templates/login_template.html:8
+msgid "Please, login"
+msgstr "Prego, fare login"
+
+#: templates/login_template.html:10
+msgid "User name"
+msgstr "Nome utente"
+
+#: templates/logout_google_template.html:3 templates/logout_template.html:3
+msgid "Thank you for partecipating! See you"
+msgstr "Grazie per aver partecipato! Arrivederci!"
+
+#: templates/thank_you_template.html:3
+msgid "Thank you!"
+msgstr "Grazie!"
+
+#: templates/votation_detail_template.html:2
+msgid "Election ID"
+msgstr "ID elezione"
+
+#: templates/votation_detail_template.html:3
+#: templates/votation_propose_template.html:14
+msgid "Election type"
+msgstr "Tipo elezione"
+
+#: templates/votation_detail_template.html:4
+#: templates/votation_propose_template.html:5
+msgid "Description"
+msgstr "Descrizione"
+
+#: templates/votation_detail_template.html:5
+msgid "Election home page"
+msgstr "Home page dell'elezione"
+
+#: templates/votation_detail_template.html:6
+msgid "Status"
+msgstr "Stato"
+
+#: templates/votation_detail_template.html:7
+msgid "Owner"
+msgstr "Promotore"
+
+#: templates/votation_detail_template.html:9
+msgid "You are a voter"
+msgstr "Hai diritto a votare"
+
+#: templates/votation_detail_template.html:11
+msgid "You are not a voter"
+msgstr "Non hai diritto a votare"
+
+#: templates/votation_detail_template.html:15
+msgid "Election is not started yet"
+msgstr "L'elezione non &egrave; ancora inziata"
+
+#: templates/votation_detail_template.html:16
+msgid "Will begin at"
+msgstr "Inizier&agrave; il "
+
+#: templates/votation_detail_template.html:17
+#: templates/votation_detail_template.html:27
+msgid "Will end at"
+msgstr "Finir&agrave; il"
+
+#: templates/votation_detail_template.html:20
+msgid "Election is over"
+msgstr "Elezione terminata"
+
+#: templates/votation_detail_template.html:21
+#: templates/votation_detail_template.html:26
+msgid "Begin at"
+msgstr "Inizio il"
+
+#: templates/votation_detail_template.html:22
+msgid "Ended at"
+msgstr "Terminata il"
+
+#: templates/votation_detail_template.html:31
+msgid "Votes"
+msgstr "Voti"
+
+#: templates/votation_detail_template.html:37
+msgid "Close the election"
+msgstr "Chiudi l'elezione"
+
+#: templates/votation_detail_template.html:43
+msgid "Delete the election"
+msgstr "Cancella l'elezione"
+
+#: templates/votation_detail_template.html:50
+msgid "Start the election"
+msgstr "Inizia l'elezione"
+
+#: templates/votation_detail_template.html:61
+msgid "Options"
+msgstr "Opzioni"
+
+#: templates/votation_detail_template.html:70
+msgid "Judgements"
+msgstr "Giudizi"
+
+#: templates/majority_jud/votation_detail_template.html:2
+#: templates/votation_detail_template.html:80
+msgid "Election Result"
+msgstr "Risultato dell'elezione"
+
+#: templates/votation_detail_template.html:81
+msgid "The election is failed"
+msgstr "Elezione fallita"
+
+#: templates/votation_detail_template.html:92
+msgid "Add Voters"
+msgstr ""
+
+#: templates/votation_detail_template.html:96
+#: templates/votation_propose_template.html:68
+msgid "Add voters"
+msgstr "Aggiungi aventi diritto"
+
+#: templates/votation_detail_template.html:98
+msgid "Write an username each row"
+msgstr "Scrivi una username per riga"
+
+#: templates/votation_detail_template.html:100
+msgid "Add"
+msgstr "Aggiungi"
+
+#: templates/votation_detail_template.html:108
+msgid "Voters List"
+msgstr ""
+
+#: templates/votation_list_template.html:4
+msgid "This is the list of elections"
+msgstr "Questa &egrave; la lista delle elezioni"
+
+#: templates/votation_list_template.html:5
+msgid "You can vote between the begin and end dates"
+msgstr "Puoi votare solo tra l'inizio e la fine."
+
+#: templates/votation_list_template.html:6
+msgid "Click the vote button"
+msgstr "Usa il bottone Vota"
+
+#: templates/votation_list_template.html:6
+msgid "to insert your vote"
+msgstr "per inserire il tuo voto"
+
+#: templates/votation_list_template.html:7
+msgid "Click the details button to get more information about the election"
+msgstr "Usa il bottone Dettagli per visualizzare le informazioni"
+
+#: templates/votation_list_template.html:16
+msgid "Election"
+msgstr "Elezione"
+
+#: templates/votation_list_template.html:20
+msgid "Begin"
+msgstr "Inizio"
+
+#: templates/votation_list_template.html:21
+msgid "End"
+msgstr "Fine"
+
+#: templates/votation_list_template.html:27
+msgid "Details"
+msgstr "Dettagli"
+
+#: templates/votation_list_template.html:29
+msgid "Be a Candidate"
+msgstr "Diventa un Candidato"
+
+#: templates/votation_propose_template.html:11
+msgid ""
+"Address of a page describing the election. As an example, a Facebook post"
+" or a blog post"
+msgstr ""
+"Indirizzo di una pagina che descriva l'elezione. Per esempio un post su "
+"Facebook o l'articolo di un blog"
+
+#: templates/votation_propose_template.html:16
+msgid "Majority judgment"
+msgstr "Scelta Maggioritaria"
+
+#: templates/votation_propose_template.html:17
+msgid "Simple majority"
+msgstr "Maggioranza Semplice"
+
+#: templates/votation_propose_template.html:23
+msgid "Begin date"
+msgstr "Data di inizio"
+
+#: templates/votation_propose_template.html:27
+msgid "Begin time"
+msgstr "Orario di inizio"
+
+#: templates/votation_propose_template.html:34
+msgid "End date"
+msgstr "Data di fine"
+
+#: templates/votation_propose_template.html:38
+msgid "End time"
+msgstr "Orario di fine"
+
+#: templates/votation_propose_template.html:44
+msgid "Option or candidate list"
+msgstr "Opzioni o lista dei candidati"
+
+#: templates/votation_propose_template.html:46
+msgid "One option each row"
+msgstr "Una opzione per riga"
+
+#: templates/votation_propose_template.html:50
+msgid "Judgement list"
+msgstr "Lista dei giudizi"
+
+#: templates/votation_propose_template.html:56
+msgid "Very good"
+msgstr "Ottimo"
+
+#: templates/votation_propose_template.html:57
+msgid "Good"
+msgstr "Buono"
+
+#: templates/votation_propose_template.html:58
+msgid "Acceptable"
+msgstr "Accettabile"
+
+#: templates/votation_propose_template.html:59
+msgid "Not enough"
+msgstr "Insufficiente"
+
+#: templates/votation_propose_template.html:60
+msgid "Poor"
+msgstr "Scadente"
+
+#: templates/votation_propose_template.html:61
+msgid "No opinion"
+msgstr "Non so"
+
+#: templates/votation_propose_template.html:63
+msgid "One judgement each row, best on top"
+msgstr "Un giudizio per riga, il migliore in alto"
+
+#: templates/votation_propose_template.html:74
+msgid "Save"
+msgstr "Salva"
+
+#: templates/majority_jud/votation_detail_template.html:4
+#: templates/simple_majority/votation_detail_template.html:4
+msgid "The number of votes and the number of voters match"
+msgstr "Il numero di voti e di votanti corrisponde"
+
+#: templates/majority_jud/votation_detail_template.html:6
+#: templates/simple_majority/votation_detail_template.html:6
+msgid "The number of votes and the number of voters do not match"
+msgstr "Il numero di voti e di votanti non corrisponde"
+
+#: templates/majority_jud/votation_detail_template.html:8
+#: templates/simple_majority/votation_detail_template.html:8
+msgid "Ranking"
+msgstr "Classifica"
+
+#: templates/majority_jud/vote_template.html:4
+#: templates/simple_majority/vote_template.html:4
+msgid "You cannot vote yet"
+msgstr "Non puoi ancora votare"
+
+#: templates/majority_jud/vote_template.html:7
+#: templates/simple_majority/vote_template.html:7
+msgid "You cannot vote anymore"
+msgstr "Non puoi votare pi&ugrave;"
+
+#: templates/majority_jud/vote_template.html:12
+msgid "You must choose a judgment for each option"
+msgstr "Devi indicare un giudizio per ogni opzione"
+
+#: templates/majority_jud/vote_template.html:13
+msgid "The \"No opinion\" judgment is the lowest ranking"
+msgstr "Il giudizio \"Non So\" &egrave; il voto pi&ugrave; basso"
+
+#: templates/majority_jud/vote_template.html:14
+msgid "You need to think up and enter a secret key, type it and keep it secret"
+msgstr "Pensa e scrivi una frase segreta, tienila segreta"
+
+#: templates/majority_jud/vote_template.html:15
+msgid "You can use any word or phrase you want"
+msgstr "Puoi usare la parola o la frase che vuoi"
+
+#: templates/majority_jud/vote_template.html:16
+msgid ""
+"You can change your vote later, but you MUST use the same secret key as "
+"before"
+msgstr ""
+"Potrai cambiare il tuo voto pi&ugrave; tardi, ma dovrai usare la stessa "
+"frase di prima"
+
+#: templates/majority_jud/vote_template.html:25
+msgid "Option"
+msgstr "Opzione"
+
+#: templates/majority_jud/vote_template.html:26
+msgid "Judgement"
+msgstr "Giudizio"
+
+#: templates/majority_jud/vote_template.html:45
+#: templates/simple_majority/vote_template.html:32
+msgid "Secret key for this vote"
+msgstr "Chiave segreta per questo voto"
+
+#: templates/majority_jud/vote_template.html:47
+msgid "Remember this secret key; it isn't possible to recover it"
+msgstr "Ricorda questa frase segreta. Non sar&agrave; possibile recuperarla"
+
+#: templates/majority_jud/vote_template.html:55
+msgid ""
+"This secret key is for THIS election only. You can use any word you want."
+" Keep it secret and don't forget it."
+msgstr ""
+"Questa chiave segreta vale solo per QUESTA elezione. Puoi usare ogni "
+"parola che vuoi. Tienila segreta e non dimenticarla."
+
+#: templates/majority_jud/vote_template.html:56
+#: templates/simple_majority/vote_template.html:43
+msgid "What's this secret key?"
+msgstr "Cosa &egrave; questo?"
+
+#: templates/majority_jud/vote_template.html:70
+#: templates/simple_majority/vote_template.html:57
+msgid "You must enter a secret key"
+msgstr "Devi scrivere una chiave segreta"
+
+#: templates/simple_majority/votation_detail_template.html:2
+msgid "Election results"
+msgstr "Risultati dell'elezione"
+
+#: templates/simple_majority/votation_detail_template.html:13
+#: templates/simple_majority/votation_detail_template.html:15
+msgid "votes"
+msgstr "voti"
+
+#: templates/simple_majority/vote_template.html:11
+msgid "Set your vote"
+msgstr "Poni il tuo voto"
+
+#: templates/simple_majority/vote_template.html:12
+msgid "You can vote only one option."
+msgstr "Puoi votare solo una opzione"
+
+#: templates/simple_majority/vote_template.html:13
+msgid "You need to think up and enter a secret key, type it and keep it secret."
+msgstr "Devi pensare una chiave segreta e scriverla. Scrivila e tienila segreta."
+
+#: templates/simple_majority/vote_template.html:14
+msgid "You can use any word or phrase you want."
+msgstr "Puoi usare una parola o una frase. Quella che vuoi."
+
+#: templates/simple_majority/vote_template.html:15
+msgid ""
+"You can change your vote later, but you MUST use the same secret key as "
+"before."
+msgstr ""
+"Potrai cambiare il tuo voto in seguito, ma dovrai usare la stessa chiave "
+"di prima."
+
+#: templates/simple_majority/vote_template.html:22
+msgid "Choose only one option"
+msgstr "Scegli solo una opzione"
+
+#: templates/simple_majority/vote_template.html:34
+msgid "Remember this secret key; it is not possible to recover"
+msgstr "Ricordati questa chiave segreta; non sar&agrave; possibile recuperarla"
+
+#~ msgid "New votation"
+#~ msgstr "Crea una votazione"
+
+#~ msgid "Votations list"
+#~ msgstr "Lista delle votazioni"
+
+#~ msgid "Votation details"
+#~ msgstr "Dettagli della votazione"
+
+#~ msgid "Votation begin"
+#~ msgstr "Inizio votazione"
+
+#~ msgid "Votation closed"
+#~ msgstr "Votazione chiusa"
+
+#~ msgid "Votation closed, please, check results"
+#~ msgstr "Votazione chiusa, controllare i risultati"
+
+#~ msgid "Votation deleted"
+#~ msgstr "Votazione cancellata"
+
+#~ msgid "Sorry, only the owner of this votation can add voters"
+#~ msgstr "Solo il promotore della votazione puo' aggiungere aventi diritto"
+
+#~ msgid "New"
+#~ msgstr "Nuova votazione"
+
+#~ msgid "Votations"
+#~ msgstr "Votazioni"
+
+#~ msgid "Votation data saved"
+#~ msgstr "Votazione salvata"
+
+#~ msgid "Error, votation data NOT saved"
+#~ msgstr "Errore, votatione non salvata"
+
+#~ msgid "Close the voting"
+#~ msgstr ""
+
+#~ msgid "Delete the voting"
+#~ msgstr ""
+
+#~ msgid "Start the voting"
+#~ msgstr ""
+
+#~ msgid "Click che details button to get more information about the votation"
+#~ msgstr ""
+
+#~ msgid "La votazione è attiva"
+#~ msgstr ""
+
+#~ msgid "Election data saved"
+#~ msgstr "Elezione salvata"
+
+#~ msgid "Error, election data NOT saved"
+#~ msgstr "Errore, elezione NON salvata"
+
+#~ msgid "Election begin"
+#~ msgstr "Inizio elezione"
+
+#~ msgid "election type"
+#~ msgstr "tipo di elezione"
+
+#~ msgid "Election is ongoing"
+#~ msgstr "L'elezione &egrave; in corso"
+
+#~ msgid "Wrong login"
+#~ msgstr "Login errato"
+
+#~ msgid "Voters list"
+#~ msgstr "Lista degli aventi diritto"
+

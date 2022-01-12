@@ -1,3 +1,4 @@
+// Callback that creates and populates a data table,
 {% extends "votation_detail_template.html" %} {% block results %}
         <h3>{{_("Election Result")}}</h3>
         {% if count_voters == count_votes %}
@@ -5,8 +6,69 @@
         {% else %}
             <div class="alert alert-danger">{{_("The number of votes and the number of voters do not match")}}.</div>
         {% endif %}
+        <h4>{{_("Ranking")}}</h4>
+        <div class="container">
+            <ol>
+                {% for r in counting %}
+                    <li class="mb-1">
+                        {{r.option_name}}
+                        <div class="row">
+                            {% for i in range(juds_array|count) %} 
+                                <div class="col-sm border text-nowrap ml-1 mb-1"><span class="badge badge-pill badge-warning w-25" data-cy="word{{i}}">{{r.totals_array[i]}}</span> {{juds_array[i].jud_name}}</div>                                                  
+                            {% endfor %}
+                        </div> 
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+        
     <p><span class="font-weight-bold">{{ "Numero vincitori:" }}</span> {{ numero_vincitori }}</p>
-    <p><span class="font-weight-bold">{{ "Winners:" }} </span> {{ result }}</p>
+    <p><span class="font-weight-bold">{{ "Vincitori:" }} </span> {{ result }}</p>
+    <p><span class="font-weight-bold">{{ "Numero cluster:" }} </span> {{ n_cluster }}</p>
 
-        {% endblock %}
+    {% for k in num_cluster %}
+    <h4>Chart for cluster number {{k+1}}</h4>
+    <div id= {{k}} ></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      
+        google.charts.setOnLoadCallback(drawChart);      
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        
+        var data = google.visualization.arrayToDataTable([
+        [ "Judgement",
+        {% for w in juds_array %}"{{w.jud_name}}", {% endfor %}
+        { role: 'annotation' } ],
+        {% for cluster, r in zip(totals_array[k],option_name) %}
+                ["{{r.option_name}}",
+                {% for n in cluster %}{{n}}, {% endfor %}
+                ''],           
+            {% endfor %}
+          ]);
+
+      var options = {
+        width: 1000,
+        height: 800,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        isStacked: true
+      };
+
+        // Instantiate and draw our chart, passing in some options.
+        
+        var chart = new google.visualization.BarChart(document.getElementById( {{k}}));
+        chart.draw(data, options);
+      }  
+    </script>
+    {% endfor %} 
+
+    {% endblock %}
