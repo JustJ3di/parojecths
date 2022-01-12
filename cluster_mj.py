@@ -27,6 +27,8 @@ from model import Vote
 def load_all_votes_by_votation_id(votation_id):
     load_all_votes =  db.session.query(Vote.jud_value).filter(Vote.votation_id == votation_id).all()
     count_all_votes = db.session.query(func.count(distinct((Vote.vote_key)))).filter(Vote.votation_id == votation_id).scalar()
+    if(count_all_votes == 0):
+        return 0
     vuoto = []
     for i in range(len(load_all_votes)):
         vuoto.append(load_all_votes[i][0])
