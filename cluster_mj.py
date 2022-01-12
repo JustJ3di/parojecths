@@ -135,7 +135,13 @@ def clusterize(vote_list, max_cluster):
 	return backtracking, n_cluster
 
 def cluster(centroid,number_of_cluster,vote_list):
-    #k = numero_vinci
+    '''
+    Ritorna una lista di cluster , dove ogni cluster è una matrice fatta come la matrice totale dei voti .
+
+    centroid è il vettore dei label restituiteci dal KMemoid
+    number_of_cluster è il numero di cluster formati
+    vote_list è la matrice di tutti elettori dove gli elettori sono le righe e le opzione sono le colonne e l'elemento i-j-esimo contiene il giudizio
+    '''
 
     possible_vote_cluster = np.zeros(shape= (number_of_cluster,len(centroid)),dtype=list)
     #[i for i in range(len(list_median)) if list_median[i] == max(list_median)]
@@ -169,7 +175,7 @@ def _cluster_counting_vote(cluster,n_list_option,n_jud_array):
     In questo caso vuole dire che l'opzione 0 (il primo option) ha avuto IN TOTALE NEL SINGOLO CLUSTER: 1 voto di tipo 0,
     3 voti di tipo 1, 1 voto di tipo 2 ecc quindi il tipo di giudizio sono le transposed dell matrice di RITORNO
 
-    cluster è la sub matrice di un cluster 
+    cluster è la sub matrice di all_cluster
     Per esempio cluster è 
     [1,2,1,3],
     [1,2,3,1],

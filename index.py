@@ -6,8 +6,12 @@ from re import template
 #EMAIL SETTING:
 import smtplib
 from email.message import EmailMessage
+from sqlalchemy.sql.functions import count
+
+from sqlalchemy.sql.operators import op
 
 from sklearn_extra import cluster
+#from spritz.frontend.cluster_mj import _cluster_counting_vote
 
 EMAIL_ADDRESS = 'programmatoreprova1234@gmail.com'
 EMAIL_PASSWORD = 'stevewozniak1'
@@ -54,6 +58,7 @@ config.db = db
 import votation_dao
 # import candidate
 #import backend
+import en_de_crypt
 import string    
 import random # define the random module  
 import option_dao
@@ -67,7 +72,7 @@ import votation_bo
 import cluster_mj
 
 import user 
-from model import Votation, Option
+from model import Option, Votation
 if config.AUTH == 'ldap':
     import auth_ldap as auth
 if config.AUTH == 'google':
@@ -167,20 +172,21 @@ def token_votation():
     message = None
     if request.method == 'POST':
         token = request.form['token']
-        global token_sudo
-        if token_sudo != token:
+        #global token_sudo
+        if user.new_user.newuser[4] != token:
             message = [1, 'Token non valido.']
         else:
-            global new_user
-            new_u = auth.insert_user(new_user[0],new_user[1],new_user[2],new_user[3])
+            #global new_user
+            new_u = auth.insert_user(user.new_user.newuser[0],user.new_user.newuser[1],user.new_user.newuser[2],user.new_user.newuser[3])
             db.session.add(new_u)
             db.session.commit()
+            user.new_user.newuser.clear()
             message = [2, 'Registrazione avvenuta con successo!']
             return render_template(('token_success.html'), pagetitle=("Registrazione completata!"), message=message)
             #return redirect(url_for('login', next="/login"))
     return render_template('token_template.html', pagetitle=("Complete registration."), message=message)
 
-import en_de_crypt
+
 @app.route("/registration", methods=['GET', 'POST'])
 #@token_required
 def registration():
@@ -196,18 +202,17 @@ def registration():
             user_name = request.form['user_name']
             pass_word = request.form['pass_word']
             email = request.form['email']
-        #verifica email
-        global token_sudo  
+        #verifica email  
         #global new_user
         crypt_password = en_de_crypt.crypt(pass_word)
-        new_user.append(user_id)
-        new_user.append(user_name)
-        new_user.append(crypt_password)
-        new_user.append(email)
+        user.new_user.newuser.append(user_id)
+        user.new_user.newuser.append(user_name)
+        user.new_user.newuser.append(crypt_password)
+        user.new_user.newuser.append(email)
         new_u = auth.insert_user(user_id,user_name,crypt_password,email)
         message = auth.reg(new_u)
         if message[0] == 1:
-            token_sudo = verifica_email(email)
+            user.new_user.newuser.append(verifica_email(email)) #token
         else:
             return render_template('registration_template.html', pagetitle=_("Registration"), message=message)
 
@@ -255,7 +260,7 @@ def votation_propose():
         v.end_date = request.form['utc_end_date']
         v.votation_type = request.form['votation_type']
         v.list_voters = 0
-        global num_vincitori
+        #global num_vincitori
         if votation_dao.TYPE_LIST_CLUSTER_MJ: 
             num_vincitori = request.form['num_possibili_vincitori']
             v.possibili_vincitori = num_vincitori
@@ -351,6 +356,9 @@ def votetion_cluster_maj_jud(v, options_array,voters_array):
     numero_vincitori = v.possibili_vincitori
     result = []
     result_word =[]
+    counting = 0
+    tot_array_cluster  = []
+    num_cluster = 0
     if v.votation_status == votation_dao.STATUS_ENDED:
         #counting = vote_maj_jud.votation_counting(v)
         #num_elettori = db.session.query(func.count(distinct((Vote.vote_key)))).filter(Vote.votation_id == votation_id).scalar()
@@ -381,28 +389,26 @@ def votetion_cluster_maj_jud(v, options_array,voters_array):
             else:
                 k = option_remaining
                 condition = 'ko'
-        k = v.possibili_vincitori
-        tot_array_cluster = []
+        
+        
         for i in cluster_mj.cluster(centroid = centroid,number_of_cluster= number_cluster,vote_list= matrix):
             totals_array =[]
             for n in cluster_mj._cluster_counting_vote(i,numero_opzioni,numero_giudizi):
                 totals_array.append(list(n))
             tot_array_cluster.append(list(totals_array))
-        print(tot_array_cluster)
+       
 
-
+        num_cluster = len(cluster_mj.cluster(centroid = centroid,number_of_cluster= number_cluster,vote_list= matrix))
         for index in result:
             result_word.append(db.session.query(Option.option_name).filter(Option.votation_id == votation_id).order_by(Option.option_id).all()[index][0])        
         
         counting = vote_maj_jud.votation_counting(v)
-        option_name = db.session.query(Option.option_name).filter(Option.votation_id == votation_id).order_by(Option.option_id).all()
+    
+    option_name = db.session.query(Option.option_name).filter(Option.votation_id == votation_id).order_by(Option.option_id).all()
         
-        juds_array = judgement_dao.load_judgement_by_votation(v.votation_id)
-        num_cluster = len(cluster_mj.cluster(centroid = centroid,number_of_cluster= number_cluster,vote_list= matrix))
-        print(num_cluster)
-        print(tot_array_cluster)
-        print(len(tot_array_cluster[0]))
-        print(counting)
+    juds_array = judgement_dao.load_judgement_by_votation(v.votation_id)
+
+
 
     return render_template('cluster_mj.html', pagetitle=_("Election details"), \
          v=v, \
@@ -415,6 +421,8 @@ def votetion_cluster_maj_jud(v, options_array,voters_array):
          result=result_word,juds_array = juds_array, counting = counting, \
         totals_array = tot_array_cluster,num_cluster = range(num_cluster), \
             n_cluster = num_cluster, option_name=option_name, zip=zip) #elegante
+
+
 
 def votation_detail_maj_jud(v, options_array, voters_array):
     juds_array = judgement_dao.load_judgement_by_votation(v.votation_id)

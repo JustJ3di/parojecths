@@ -77,3 +77,8 @@ def load_user_by_email(email):
             db.session.add(u)
             db.session.commit()
     return u
+
+
+
+class new_user:
+    newuser = []

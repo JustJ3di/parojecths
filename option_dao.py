@@ -13,7 +13,6 @@ db = config.db
 def load_options_by_votation(votation_id):
     """Returns a option_dto array"""
     ar = db.session.query(Option).filter(Option.votation_id == votation_id).order_by(Option.option_id).all()
-    print(f"load_options_by_votation{ar}")
     return ar
 
 

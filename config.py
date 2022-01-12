@@ -16,7 +16,7 @@ DBTYPE="postgresql"
 DBHOST = "localhost"
 DBNAME = "spritz"
 DBUSER = 'postgres'
-DBPWD = 'gm2020^+'
+DBPWD = 'guba98ba17'
 #DBPWD  = os.environ.get('POSTGRES_PWD')    # "abc123"
 SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://{}:{}@{}:{}/{}'.format(DBUSER,DBPWD,DBHOST,5432,DBNAME)
 #SQLALCHEMY_DATABASE_URI='sqlite:///test.db'
@@ -36,6 +36,8 @@ AUTH = 'test' # fake login base on voting_user sql table, testing pourpose
 # Global variables
 #
 db = None
+
+PATH_LOGIN_FILE = 'static\login\login.json'
 
 # Constants, do not edit
 MSG_INFO = 0
